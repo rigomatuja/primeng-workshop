@@ -105,7 +105,7 @@
 
 .machine-coin-control{
     /* Flex */
-    @include styleclass('flex flex-row gap-3 justify-content-center');
+    @include styleclass('flex flex-row gap-3 justify-content-center align-items-center');
 
     /* Box sizing */
     @include styleclass('w-full h-auto');
