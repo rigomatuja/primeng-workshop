@@ -21,7 +21,7 @@
 
         <div class="machine-body">
             <div class="machine-dispenser">
-                <img *ngIf="machineDisplayMessage === 'Listo!'" class="z-1" src="assets/glass.png"/>
+                <img *ngIf="machineDisplayMessage === 'Listo!'" class="z-1" src="https://i.imgur.com/U9hgqla.png"/>
             </div>
 
             <div class="machine-controls">
@@ -131,35 +131,39 @@
                     </ng-template>
                 </p-table>
 
-                <button (click)="showSellsDataModal()" pButton pRipple type="button" label="Ver Resumen de Ventas" class="p-button-raised p-button-secondary mt-4"></button>
+                <button (click)="showSellsDataModal()" pButton pRipple type="button" label="Ver Gráfico Ventas" class="p-button-raised p-button-secondary mt-4"></button>
+
+                <button (click)="showSellsRevenue()" pButton pRipple type="button" label="Ver Resumen Ingresos" class="p-button-raised p-button-secondary mt-4 ml-4"></button>
             </div>
         </div>
     </div>
 </div>
 <p-toast></p-toast>
 <p-confirmPopup></p-confirmPopup>
-<p-dialog header="Gráfico de Cafés Vendidos" [(visible)]="displayChart" [style]="{width: '40vw'}">
-    <div class="flex p-8 ">
-        <p-chart type="pie" [data]="chartData" [style]="{'width': '80%'}"></p-chart>
+<p-dialog header="Gráfico de Cafés Vendidos" styleClass="flex w-30rem justify-content-center" [(visible)]="displayChart" [style]="{width: '40vw'}">
+    <p-chart type="pie" [data]="chartData" [style]="{'width': '100%'}"></p-chart>
+</p-dialog>
 
-        <div>
-            <h4>Ventas totales:</h4>
+<p-dialog header="Resumen de Ingreso" styleClass="sm:w-full md:w-10 lg:w-6" [(visible)]="displayRevenue" [style]="{width: '40vw'}">
+    <div class="flex flex-column justify-content-center align-items-center">
+        <h5>
+            {{coffeeNames.get(coffeeTypes.coffee)}}: {{revenueData[0] | currency:'EUR':true}}
+        </h5>
 
-            <h5>
-                {{coffeeNames.get(coffeeTypes.coffee)}}: {{revenueData[0] | currency:'EUR':true}}
-            </h5>
+        <h5>
+            {{coffeeNames.get(coffeeTypes.macchiato)}}: {{revenueData[1] | currency:'EUR':true}}
+        </h5>
 
-            <h5>
-                {{coffeeNames.get(coffeeTypes.macchiato)}}: {{revenueData[1] | currency:'EUR':true}}
-            </h5>
+        <h5>
+            {{coffeeNames.get(coffeeTypes.withMilk)}}: {{revenueData[2] | currency:'EUR':true}}
+        </h5>
 
-            <h5>
-                {{coffeeNames.get(coffeeTypes.withMilk)}}: {{revenueData[2] | currency:'EUR':true}}
-            </h5>
+        <h5>
+            {{coffeeNames.get(coffeeTypes.cappuccino)}}: {{revenueData[3] | currency:'EUR':true}}
+        </h5>
 
-            <h5>
-                {{coffeeNames.get(coffeeTypes.cappuccino)}}: {{revenueData[3] | currency:'EUR':true}}
-            </h5>
-        </div>
+        <h4>
+            Total: {{revenueData[0] + revenueData[1] + revenueData[2] +revenueData[3] | currency:'EUR':true}}
+        </h4>
     </div>
 </p-dialog>

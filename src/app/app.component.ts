@@ -49,6 +49,7 @@ export class AppComponent {
     interval: number = 0;
     machineDisplayMessage: string = this.defaultMessage;
     displayChart: boolean = false;
+    displayRevenue: boolean = false;
     chartData = {
         labels: [this.coffeeNames.get(CoffeeTypes.coffee), this.coffeeNames.get(CoffeeTypes.macchiato), this.coffeeNames.get(CoffeeTypes.withMilk), this.coffeeNames.get(CoffeeTypes.cappuccino)],
         datasets: [
@@ -126,6 +127,12 @@ export class AppComponent {
         this.calculateChartData();
 
         this.displayChart = true;
+    }
+
+    showSellsRevenue(){
+        this.calculateChartData();
+
+        this.displayRevenue = true;
     }
 
     calculateChartData(){
