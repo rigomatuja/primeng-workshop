@@ -1,0 +1,127 @@
+@import 'node_modules/primeflex/primeflex.scss';
+
+.main-container{
+    /* Box sizing */
+    @include styleclass('h-screen w-screen');
+
+    /* Flex settings */
+    @include styleclass('flex flex-column justify-content-center align-content-center align-items-center');
+}
+
+.coffee-machine-container{
+    /* Box sizing */
+    @include styleclass('w-4 min-w-min h-auto');
+
+    /* Flex settings */
+    @include styleclass('flex flex-column gap-3');
+
+    /* Box styling */
+    @include styleclass('surface-600 border-round-3xl shadow-6');
+
+    /* Box spacing */
+    @include styleclass('py-4');
+}
+
+.machine-header{
+    /* Box sizing */
+    @include styleclass('min-w-min p-5');
+
+    /* Flex settings */
+    @include styleclass('flex flex-column gap-3 justify-content-between align-items-center');
+}
+
+.machine-body{
+    /* Box sizing */
+    @include styleclass('w-full px-5');
+
+    /* Flex settings */
+    @include styleclass('flex flex-row gap-3 justify-content-center align-items-center');
+}
+
+.machine-footer{
+    /* Flex settings */
+    @include styleclass('flex flex-column');
+
+    /* Box spacing */
+    @include styleclass('mt-5 p-5');
+}
+
+.machine-display{
+    /* Flex */
+    @include styleclass('flex gap-3 justify-content-center align-items-center');
+
+    /* Box Sizing */
+    @include styleclass('w-full h-3rem');
+
+    /* Box spacing */
+    @include styleclass('p-1');
+
+    /* Box background and border */
+    @include styleclass('bg-cyan-700 border-round-md border-1 border-solid border-blue-900');
+
+    /* Font styling */
+    @include styleclass('text-white text-sm');
+    font-family: "Courier New";
+}
+
+.machine-controls{
+    /* Box Sizing */
+    @include styleclass('min-w-min h-6rem');
+
+    /* Flex settings */
+    @include styleclass('flex flex-column gap-1 justify-content-center align-items-center');
+}
+
+.machine-dispenser{
+    /* Flex */
+    @include styleclass('flex justify-content-center align-items-center');
+
+    /* Box Sizing */
+    @include styleclass('w-6 min-w-min h-8rem');
+
+    /* Box spacing */
+    @include styleclass('p-1');
+
+    /* Box background and border */
+    @include styleclass('surface-700 border-round-xl border-2 border-solid border-surface-900');
+
+    /* Font styling */
+    @include styleclass('p-2');
+}
+
+.coffee-button{
+    /* Flex */
+    @include styleclass('flex px-2 justify-content-between');
+
+    /* Box sizing */
+    @include styleclass('w-9rem surface-800');
+
+    /* Box spacing */
+    @include styleclass('p-1');
+
+    /* Font styling */
+    @include styleclass('text-xs font-medium text-100');
+}
+
+.machine-coin-control{
+    /* Flex */
+    @include styleclass('flex flex-row gap-3 justify-content-center');
+
+    /* Box sizing */
+    @include styleclass('w-full h-auto');
+
+    /* Box spacing */
+    @include styleclass('p-2');
+
+    /* Box styling */
+    @include styleclass('surface-300 border-round-md');
+}
+
+.machine-coin-control > div {
+    cursor: pointer;
+}
+
+.machine-usage-overview{
+    /* Box spacing */
+    @include styleclass('pt-4');
+}

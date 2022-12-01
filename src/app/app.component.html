@@ -1,3 +1,165 @@
-<p-card>
-  Content
-</p-card>
+<div class="main-container">
+    <div class="coffee-machine-container">
+        <div class="machine-header">
+            <div class="text-xl font-bold text-orange-200">
+                Coffee Machine
+            </div>
+
+            <div class="machine-display">
+                <ng-template [ngIf]="!isMakingCoffee">
+                    <span>{{machineDisplayMessage}}</span>
+
+                    <span>{{balance | currency:'EUR':true}}</span>
+                </ng-template>
+
+                <ng-template [ngIf]="isMakingCoffee">
+                    <span>{{machineDisplayMessage}}</span>
+                    <span *ngIf="progress < 100">{{progress}}%</span>
+                </ng-template>
+            </div>
+        </div>
+
+        <div class="machine-body">
+            <div class="machine-dispenser">
+                <img *ngIf="machineDisplayMessage === 'Listo!'" class="z-1" src="assets/glass.png"/>
+            </div>
+
+            <div class="machine-controls">
+                <p-button styleClass="p-button-outlined p-button-secondary p-0">
+                    <div (click)="makeCoffee(coffeeTypes.coffee)" class="coffee-button">
+                        <span class="mr-2">☕</span>
+
+                        <span>
+                            {{coffeeNames.get(coffeeTypes.coffee)}}
+                        </span>
+
+                        <span>
+                            {{coffeePrices.get(coffeeTypes.coffee)}}€
+                        </span>
+                    </div>
+                </p-button>
+
+                <p-button styleClass="p-button-outlined p-button-secondary mb-1 p-0">
+                    <div (click)="makeCoffee(coffeeTypes.macchiato)" class="coffee-button">
+                        <span class="mr-2">☕</span>
+
+                        <span>
+                            {{coffeeNames.get(coffeeTypes.macchiato)}}
+                        </span>
+
+                        <span>
+                            {{coffeePrices.get(coffeeTypes.macchiato)}}€
+                        </span>
+                    </div>
+                </p-button>
+
+                <p-button styleClass="p-button-outlined p-button-secondary mb-1 p-0">
+                    <div (click)="makeCoffee(coffeeTypes.withMilk)" class="coffee-button">
+                        <span class="mr-2">☕</span>
+
+                        <span>
+                            {{coffeeNames.get(coffeeTypes.withMilk)}}
+                        </span>
+
+                        <span>
+                            {{coffeePrices.get(coffeeTypes.withMilk)}}€
+                        </span>
+                    </div>
+                </p-button>
+
+                <p-button styleClass="p-button-outlined p-button-secondary mb-1 p-0">
+                    <div (click)="makeCoffee(coffeeTypes.cappuccino)" class="coffee-button">
+                        <span class="mr-2">☕</span>
+
+                        <span>
+                            {{coffeeNames.get(coffeeTypes.cappuccino)}}
+                        </span>
+
+                        <span>
+                            {{coffeePrices.get(coffeeTypes.cappuccino)}}€
+                        </span>
+                    </div>
+                </p-button>
+            </div>
+        </div>
+
+        <div class="machine-footer">
+            <div class="machine-coin-control">
+                <div (click)="addBalance(0.5)" pTooltip="Insertar 0,5€" tooltipPosition="top">
+                    🪙 0,5€
+                </div>
+
+                <div (click)="addBalance(1)" pTooltip="Insertar 1€" tooltipPosition="top">
+                    🪙 1€
+                </div>
+
+                <div (click)="addBalance(2)" pTooltip="Insertar 2€" tooltipPosition="top">
+                    🪙 2€
+                </div>
+
+                <div (click)="confirm($event)" pTooltip="Reiniciar Saldo" tooltipPosition="top">
+                    <i class="pi pi-replay"></i>
+                </div>
+            </div>
+
+            <div *ngIf="history.length" class="machine-usage-overview">
+                <span class="textlg text-white">Histórico de Uso</span>
+                <p-table
+                    [value]="history"
+                    [paginator]="true"
+                    [rows]="5"
+                    [showCurrentPageReport]="true"
+                    [tableStyle]="{'min-width': '30rem'}"
+                    [globalFilterFields]="['coffeeType','coffeeName','timestamp']">
+                    styleClass="p-datatable-xs"
+                >
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th pSortableColumn="coffeeType" class="text-sm p-2">Tipo de Café <p-sortIcon field="coffeeType"></p-sortIcon></th>
+                            <th pSortableColumn="coffeeName" class="text-sm p-2">Nombre <p-sortIcon field="coffeeName"></p-sortIcon></th>
+                            <th pSortableColumn="price" class="text-sm p-2">Precio <p-sortIcon field="price"></p-sortIcon></th>
+                            <th pSortableColumn="timestamp" class="text-sm p-2">Fecha <p-sortIcon field="timestamp"></p-sortIcon></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-entry>
+                        <tr>
+                            <td class="text-sm p-1">{{entry.coffeeType}}</td>
+                            <td class="text-sm p-1">{{entry.coffeeName}}</td>
+                            <td class="text-sm p-1">{{entry.price}}</td>
+                            <td class="text-sm p-1">{{entry.timestamp | date:'medium'}}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+                <button (click)="showSellsDataModal()" pButton pRipple type="button" label="Ver Resumen de Ventas" class="p-button-raised p-button-secondary mt-4"></button>
+            </div>
+        </div>
+    </div>
+</div>
+<p-toast></p-toast>
+<p-confirmPopup></p-confirmPopup>
+<p-dialog header="Gráfico de Cafés Vendidos" [(visible)]="displayChart" [style]="{width: '40vw'}">
+    <div class="flex p-8 ">
+        <p-chart type="pie" [data]="chartData" [style]="{'width': '80%'}"></p-chart>
+
+        <div>
+            <h4>Ventas totales:</h4>
+
+            <h5>
+                {{coffeeNames.get(coffeeTypes.coffee)}}: {{revenueData[0] | currency:'EUR':true}}
+            </h5>
+
+            <h5>
+                {{coffeeNames.get(coffeeTypes.macchiato)}}: {{revenueData[1] | currency:'EUR':true}}
+            </h5>
+
+            <h5>
+                {{coffeeNames.get(coffeeTypes.withMilk)}}: {{revenueData[2] | currency:'EUR':true}}
+            </h5>
+
+            <h5>
+                {{coffeeNames.get(coffeeTypes.cappuccino)}}: {{revenueData[3] | currency:'EUR':true}}
+            </h5>
+        </div>
+    </div>
+</p-dialog>
