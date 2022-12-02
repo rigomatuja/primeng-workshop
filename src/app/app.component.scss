@@ -1,19 +1,19 @@
 @import 'node_modules/primeflex/primeflex.scss';
 
 .main-container{
+    /* Flex */
+    @include styleclass('flex flex-column justify-content-center align-content-center align-items-center');
+
     /* Box sizing */
     @include styleclass('h-screen w-screen');
-
-    /* Flex settings */
-    @include styleclass('flex flex-column justify-content-center align-content-center align-items-center');
 }
 
 .coffee-machine-container{
+    /* Flex */
+    @include styleclass('flex flex-column gap-3');
+
     /* Box sizing */
     @include styleclass('min-w-min h-auto');
-
-    /* Flex settings */
-    @include styleclass('flex flex-column gap-3');
 
     /* Box styling */
     @include styleclass('surface-600 border-round-3xl shadow-6');
@@ -23,27 +23,27 @@
 }
 
 .machine-header{
+    /* Flex */
+    @include styleclass('flex flex-column gap-3 justify-content-between align-items-center');
+
     /* Box sizing */
     @include styleclass('min-w-min p-5');
-
-    /* Flex settings */
-    @include styleclass('flex flex-column gap-3 justify-content-between align-items-center');
 }
 
 .machine-body{
-    /* Box sizing */
-    @include styleclass('w-full px-5');
-
     /* Flex settings */
     @include styleclass('flex flex-row gap-3 justify-content-center align-items-center');
+
+    /* Box sizing */
+    @include styleclass('w-full px-5');
 }
 
 .machine-footer{
-    /* Flex settings */
-    @include styleclass('flex flex-column');
-
     /* Box spacing */
     @include styleclass('mt-5 p-5');
+
+    /* Flex */
+    @include styleclass('flex flex-column');
 }
 
 .machine-display{
@@ -56,7 +56,7 @@
     /* Box spacing */
     @include styleclass('p-1');
 
-    /* Box background and border */
+    /* Box styling */
     @include styleclass('bg-cyan-700 border-round-md border-1 border-solid border-blue-900');
 
     /* Font styling */
@@ -65,11 +65,11 @@
 }
 
 .machine-controls{
-    /* Box Sizing */
-    @include styleclass('min-w-min h-6rem');
-
     /* Flex settings */
     @include styleclass('flex flex-column gap-1 justify-content-center align-items-center');
+
+    /* Box Sizing */
+    @include styleclass('min-w-min h-6rem');
 }
 
 .machine-dispenser{
@@ -82,7 +82,7 @@
     /* Box spacing */
     @include styleclass('p-1');
 
-    /* Box background and border */
+    /* Box styling */
     @include styleclass('surface-700 border-round-xl border-2 border-solid border-surface-900');
 
     /* Font styling */
@@ -104,7 +104,7 @@
 }
 
 .machine-coin-control{
-/* Flex */
+    /* Flex */
     @include styleclass('flex flex-row gap-3 justify-content-center align-items-center');
 
     /* Box sizing */
