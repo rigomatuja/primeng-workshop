@@ -15,6 +15,7 @@ import {ConfirmPopupModule} from "primeng/confirmpopup";
 import {TableModule} from "primeng/table";
 import {DialogModule} from "primeng/dialog";
 import {ChartModule} from "primeng/chart";
+import {CardModule} from "primeng/card";
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import {ChartModule} from "primeng/chart";
         TableModule,
         DialogModule,
         ChartModule,
+        CardModule,
     ],
   providers: [CurrencyPipe],
   bootstrap: [AppComponent]

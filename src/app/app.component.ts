@@ -58,12 +58,14 @@ export class AppComponent {
                 backgroundColor: [
                     "#42A5F5",
                     "#66BB6A",
-                    "#FFA726"
+                    "#FFA726",
+                    "#ff3300"
                 ],
                 hoverBackgroundColor: [
                     "#64B5F6",
                     "#81C784",
-                    "#FFB74D"
+                    "#FFB74D",
+                    "#ff5050"
                 ]
             }
         ]

@@ -32,7 +32,7 @@
 
 .machine-body{
     /* Box sizing */
-    @include styleclass('sm:w-30rem lg:w-full px-5');
+    @include styleclass('w-full px-5');
 
     /* Flex settings */
     @include styleclass('flex flex-row gap-3 justify-content-center align-items-center');
