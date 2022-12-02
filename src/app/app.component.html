@@ -6,8 +6,11 @@
             </div>
 
             <div class="machine-display">
-                <span>{{machineDisplayMessage}}</span>
-                <span *ngIf="isMakingCoffee && progress < 100">{{progress}}%</span>
+                <span>
+                    {{machineDisplayMessage}}
+                    <span *ngIf="isMakingCoffee && progress < 100">{{progress}}%</span>
+                </span>
+<!--                <span *ngIf="isMakingCoffee && progress < 100">{{progress}}%</span>-->
                 <span>{{balance | currency:'EUR':true}}</span>
             </div>
         </div>

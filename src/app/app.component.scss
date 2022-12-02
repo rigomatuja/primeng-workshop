@@ -48,13 +48,13 @@
 
 .machine-display{
     /* Flex */
-    @include styleclass('flex gap-3 justify-content-center align-items-center');
+    @include styleclass('flex gap-3 justify-content-between align-items-center');
 
     /* Box Sizing */
     @include styleclass('w-full h-3rem');
 
     /* Box spacing */
-    @include styleclass('p-1');
+    @include styleclass('p-2');
 
     /* Box styling */
     @include styleclass('bg-cyan-700 border-round-md border-1 border-solid border-blue-900');
